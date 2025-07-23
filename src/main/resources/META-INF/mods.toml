@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"  # Para Forge 1.19.2 (usá el 43.x que estés usando)
+
+license = "MIT"  # O lo que quieras
+
+[[mods]]
+modId = "breakfastmod"
+version = "1.0.0"
+displayName = "BreakFast Mod"
+authors = "Leandro Blandi"
+description = '''
+Mod para minar en 3x3 más rápido con un comando para activarlo o desactivarlo.
+'''
+
+[[dependencies."breakfastmod"]]
+modId = "forge"
+mandatory = true
+versionRange = "[43,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."breakfastmod"]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,1.20)"
+ordering = "NONE"
+side = "BOTH"
