@@ -62,9 +62,3 @@ MIT © [Leandro Blandi](https://github.com/leandroblandi)
 ## 🙌 Contributing
 
 PRs and ideas are welcome. Feel free to open issues if you want to improve or extend functionality (e.g. pickaxe blacklist, advanced radius options, etc).
-
----
-
-## 📸 Screenshots (optional)
-
-_Add here if querés subir imágenes del efecto 3x3 in-game._
