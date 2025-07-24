@@ -1,9 +1,9 @@
-package xyz.elebe.breakfast.utils;
+package xyz.elebe.breakfast.constants;
 
-public final class LogUtil {
+public class LogConstants {
     public static final String SERVER_LOG_ACTIVATED_MESSAGE = "{} activated BreakFast";
     public static final String SERVER_LOG_DEACTIVATED_MESSAGE = "{} deactivated BreakFast";
 
-    private LogUtil() {
+    private LogConstants() {
     }
 }
