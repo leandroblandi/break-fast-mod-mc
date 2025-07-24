@@ -14,8 +14,8 @@ public class BreakFastCommand {
     private static final String COMMAND_DEACTIVATE_LITERAL = "disable";
 
     // Messages sent by server: change this if you want to modify the message
-    public static final Component COMMAND_ACTIVATION_MESSAGE = Component.literal("🟢 BreakFast mode ACTIVATED");
-    public static final Component COMMAND_DEACTIVATION_MESSAGE = Component.literal("🔴 BreakFast mode DEACTIVATED");
+    public static final Component COMMAND_ACTIVATION_MESSAGE = Component.literal("[BreakFast] Ultra mining mode enabled");
+    public static final Component COMMAND_DEACTIVATION_MESSAGE = Component.literal("[BreakFast] Ultra mining mode disabled");
 
     public static LiteralArgumentBuilder<CommandSourceStack> getCommand() {
         return Commands.literal(COMMAND_NAME)

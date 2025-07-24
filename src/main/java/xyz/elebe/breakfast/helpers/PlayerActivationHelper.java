@@ -15,8 +15,9 @@ public class PlayerActivationHelper {
 
     public static int togglePlayerActivation(Player player) {
         boolean value  = isPlayerActivated(player);
-        PLAYERS.put(player.getUUID(), !value);
-        GenericHelper.showToggleOutput(player, value);
+        boolean newValue = !value;
+        PLAYERS.put(player.getUUID(), newValue);
+        GenericHelper.showToggleOutput(player, newValue);
         return 1;
     }
 
