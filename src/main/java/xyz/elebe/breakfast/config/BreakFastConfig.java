@@ -16,7 +16,7 @@ public class BreakFastConfig {
                 .define("onlyWithTools", true);
 
         MAX_BLOCKS = BUILDER
-                .comment("Max range block player can break (min. 1x1, 2x2, ..., 10x10 max.)")
+                .comment("Max range block player can break")
                 .defineInRange("maxBlocks", 3, 1, 10);
 
         BUILDER.pop();

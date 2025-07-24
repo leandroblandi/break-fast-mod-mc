@@ -1,6 +1,7 @@
 package xyz.elebe.breakfast.helpers;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -27,35 +28,43 @@ public class BlockDestructionHelper {
 
         Level level = player.level;
         BlockPos center = event.getPos();
-        int maxBlocks = BreakFastConfig.MAX_BLOCKS.get();
+        Direction direction = player.getDirection();
 
-        // We control unwanted behaviors with this default fallback
+        int maxBlocks = BreakFastConfig.MAX_BLOCKS.get();
         if (maxBlocks < 1 || maxBlocks > 10) {
             maxBlocks = 3;
         }
 
-        int halfRange = maxBlocks / 2;
+        int half = maxBlocks / 2;
 
-        for (int dx = -halfRange; dx <= halfRange; dx++) {
-            for (int dz = -halfRange; dz <= halfRange; dz++) {
-                BlockPos newPos = center.offset(dx, 0, dz);
-                destroyBlock(newPos, center, level);
+        for (int dx = -half; dx <= half; dx++) {
+            for (int dy = -half; dy <= half; dy++) {
+                for (int dz = -half; dz <= half; dz++) {
+                    BlockPos offsetPos = getOffsetPos(center, dx, dy, dz, direction);
+                    if (!offsetPos.equals(center)) {
+                        destroyBlock(offsetPos, level);
+                    }
+                }
             }
         }
     }
 
-    private static void destroyBlock(BlockPos newPos, BlockPos center, Level level) {
-        if (newPos.equals(center)) {
-            return;
-        }
-
-        BlockState state = level.getBlockState(newPos);
-
-        if (state.isAir() || state.getDestroySpeed(level, newPos) < 0) {
-            return;
-        }
-
-        level.destroyBlock(newPos, true);
+    private static BlockPos getOffsetPos(BlockPos center, int dx, int dy, int dz, Direction direction) {
+        return switch (direction.getAxis()) {
+            case Y -> center.offset(dx, 0, dz); // XZ
+            case Z -> center.offset(dx, dy, 0); // XY
+            case X -> center.offset(0, dy, dz); // YZ
+            default -> center;
+        };
     }
 
+    private static void destroyBlock(BlockPos pos, Level level) {
+        BlockState state = level.getBlockState(pos);
+
+        if (state.isAir() || state.getDestroySpeed(level, pos) < 0) {
+            return;
+        }
+
+        level.destroyBlock(pos, true);
+    }
 }
