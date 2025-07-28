@@ -11,7 +11,7 @@ public class CommandConstants {
 
     // Chat messages system send player when command is activated
     public final static String PLAYER_OUTPUT_COMMAND_ACTIVATION = "[BreakFast] Ultra mining mode enabled";
-    public final static String PLAYER_OUTPUT_COMMAND_DEACTIVATION = "[BreakFast] Ultra mining mode enabled";
+    public final static String PLAYER_OUTPUT_COMMAND_DEACTIVATION = "[BreakFast] Ultra mining mode disabled";
 
     private CommandConstants() {
     }

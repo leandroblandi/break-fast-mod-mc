@@ -24,29 +24,59 @@ public class BreakFastEventsHandler {
         setup();
     }
 
+    /**
+     * Called when commands are registered.
+     * <p>
+     * Registers the mod's command using the given command dispatcher.
+     *
+     * @param event the event fired when commands are registered
+     */
     @SubscribeEvent
     public void onCommandRegister(RegisterCommandsEvent event) {
         event.getDispatcher().register(BreakFastCommand.getCommand());
     }
 
+    /**
+     * Called when a player logs in.
+     * <p>
+     * Deactivates Ultra Mining mode for the player.
+     *
+     * @param event the event fired when a player logs in
+     */
     @SubscribeEvent
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         PlayerActivationHelper.deactivatePlayer(event.getEntity());
     }
 
+    /**
+     * Called when a player logs out.
+     * <p>
+     * Deactivates Ultra Mining mode for the player.
+     *
+     * @param event the event fired when a player logs out
+     */
     @SubscribeEvent
     public void onPlayerLeave(PlayerEvent.PlayerLoggedOutEvent event) {
         PlayerActivationHelper.deactivatePlayer(event.getEntity());
     }
 
+    /**
+     * Called when a player breaks a block.
+     * <p>
+     * If the player has Ultra Mining enabled, this method will destroy all blocks
+     * in a 3x3 area centered at the block that was broken.
+     *
+     * @param event the event fired when a player breaks a block
+     */
     @SubscribeEvent
     public void onBlockBreak(BlockEvent.BreakEvent event) {
-        if (GenericHelper.isClientSide(event)) {
-            return;
-        }
         BlockDestructionHelper.handleBlockDestruction(event);
     }
 
+    /**
+     * Registers the event bus for the mod and configures the common TOML
+     * configuration file.
+     */
     private void setup() {
         MinecraftForge.EVENT_BUS.register(this);
         ModLoadingContext.get().registerConfig(
