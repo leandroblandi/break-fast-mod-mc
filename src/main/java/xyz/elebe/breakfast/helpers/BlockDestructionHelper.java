@@ -78,9 +78,9 @@ public class BlockDestructionHelper {
      */
     private static BlockPos getOffsetPos(BlockPos center, int dx, int dy, int dz, Direction direction) {
         return switch (direction.getAxis()) {
-            case Y -> center.offset(dx, 0, dz); // XZ
-            case Z -> center.offset(dx, dy, 0); // XY
-            case X -> center.offset(0, dy, dz); // YZ
+            case Y -> center.offset(dx, dy, dz); // XYZ when looking up/down
+            case Z -> center.offset(dx, dy, 0);  // XY when looking north/south
+            case X -> center.offset(0, dy, dz);  // YZ when looking east/west
             default -> center;
         };
     }

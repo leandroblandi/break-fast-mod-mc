@@ -24,11 +24,11 @@ public class BreakFastCommand {
      */
     public static LiteralArgumentBuilder<CommandSourceStack> getCommand() {
         return Commands.literal(CommandConstants.COMMAND_NAME)
-                .requires(s -> s.hasPermission(0))
+                .requires(s -> s.hasPermission(CommandConstants.PERMISSION_LEVEL_TO_EXECUTE))
                 .then(Commands.literal(CommandConstants.COMMAND_ACTIVATE_LITERAL)
-                        .executes(ctx -> PlayerActivationHelper.togglePlayerActivation(ctx.getSource().getPlayerOrException())))
+                        .executes(ctx -> PlayerActivationHelper.activatePlayer(ctx.getSource().getPlayerOrException())))
                 .then(Commands.literal(CommandConstants.COMMAND_DEACTIVATE_LITERAL)
-                        .executes(ctx -> PlayerActivationHelper.togglePlayerActivation(ctx.getSource().getPlayerOrException())));
+                        .executes(ctx -> PlayerActivationHelper.deactivatePlayer(ctx.getSource().getPlayerOrException())));
     }
 
 }

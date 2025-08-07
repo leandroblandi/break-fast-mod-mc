@@ -20,20 +20,17 @@ public class PlayerActivationHelper {
     }
 
     /**
-     * Toggles the Ultra Mining mode activation status for the given player.
+     * Activates the Ultra Mining mode for the given player.
      * <p>
-     * If the player currently has Ultra Mining mode activated, it will be
-     * deactivated, and vice versa. A message indicating the new status will
-     * be sent to the player and logged to the server.
+     * This method sets the activation status of Ultra Mining mode to true for the
+     * provided player, indicating that the player is now in Ultra Mining mode.
      *
-     * @param player the player whose Ultra Mining mode status is to be toggled
+     * @param player the player whose Ultra Mining mode is to be activated
      * @return an integer value indicating the operation was performed
      */
-    public static int togglePlayerActivation(Player player) {
-        boolean value  = isPlayerActivated(player);
-        boolean newValue = !value;
-        PLAYERS.put(player.getUUID(), newValue);
-        GenericHelper.showToggleOutput(player, newValue);
+    public static int activatePlayer(Player player) {
+        PLAYERS.put(player.getUUID(), true);
+        GenericHelper.showActivationMessage(player);
         return 1;
     }
 
@@ -45,7 +42,9 @@ public class PlayerActivationHelper {
      *
      * @param player the player whose Ultra Mining mode is to be deactivated
      */
-    public static void deactivatePlayer(Player player) {
+    public static int deactivatePlayer(Player player) {
         PLAYERS.put(player.getUUID(), false);
+        GenericHelper.showDeactivationMessage(player);
+        return 1;
     }
 }

@@ -13,6 +13,11 @@ public class CommandConstants {
     public final static String PLAYER_OUTPUT_COMMAND_ACTIVATION = "[BreakFast] Ultra mining mode enabled";
     public final static String PLAYER_OUTPUT_COMMAND_DEACTIVATION = "[BreakFast] Ultra mining mode disabled";
 
+    // Determine the permission level required to execute the command
+    // Change this to your desired level (i.e. 0-4)
+    public static final int PERMISSION_LEVEL_TO_EXECUTE = 0;
+
+
     private CommandConstants() {
     }
 }
